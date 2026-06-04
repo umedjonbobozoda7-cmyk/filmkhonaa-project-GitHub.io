@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Смотреть — FILMKHONA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="watch">
+  <div id="loader">
+    <div class="loader-logo">FILMKHONA</div>
+    <div class="loader-bar"></div>
+    <p class="loader-text" data-i18n="loading">Загрузка FILMKHONA...</p>
+  </div>
+
+  <div class="bg-cinematic" aria-hidden="true"></div>
+
+  <header class="navbar scrolled" id="navbar">
+    <a href="index.html" class="logo">FILMKHONA</a>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="navHome">Главная</a></li>
+      <li><a href="library.html" data-i18n="navLibrary">Библиотека</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="ru" type="button">RU</button>
+        <button class="lang-btn" data-lang="tj" type="button">TJ</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="watch-page">
+    <div class="player-wrapper">
+      <video id="main-video" playsinline preload="metadata">
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+      </video>
+      <div class="player-controls">
+        <button class="control-btn" id="play-pause" type="button" aria-label="Play">▶</button>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <div class="quality-selector">
+          <span class="quality-label" data-i18n="quality">Качество</span>
+          <button class="quality-btn" data-quality="360p" type="button">360p</button>
+          <button class="quality-btn" data-quality="480p" type="button">480p</button>
+          <button class="quality-btn active" data-quality="720p" type="button">720p</button>
+          <button class="quality-btn" data-quality="1080p" type="button">1080p</button>
+        </div>
+        <button class="control-btn" id="fullscreen-btn" type="button" title="Fullscreen">⛶</button>
+      </div>
+    </div>
+
+    <div class="watch-info">
+      <h1 id="watch-title">Фильм</h1>
+      <div class="watch-meta" id="watch-meta"></div>
+      <p class="watch-desc" id="watch-desc"></p>
+    </div>
+
+    <section class="related-section">
+      <h2 data-i18n="related">Похожие фильмы</h2>
+      <div class="related-grid" id="related-grid"></div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 <span>FILMKHONA</span> — Premium Cinema Experience</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    window.addEventListener('scroll', function() {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Библиотека — FILMKHONA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="library">
+  <div id="loader">
+    <div class="loader-logo">FILMKHONA</div>
+    <div class="loader-bar"></div>
+    <p class="loader-text" data-i18n="loading">Загрузка FILMKHONA...</p>
+  </div>
+
+  <div class="bg-starfield" aria-hidden="true"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="logo">FILMKHONA</a>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="navHome">Главная</a></li>
+      <li><a href="library.html" class="active" data-i18n="navLibrary">Библиотека</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="ru" type="button">RU</button>
+        <button class="lang-btn" data-lang="tj" type="button">TJ</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <h1 data-i18n="navLibrary">Библиотека</h1>
+    <div class="library-controls">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="search" id="search-input" data-i18n-placeholder="searchPlaceholder" placeholder="Поиск фильмов...">
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" data-genre="all" type="button" data-i18n="filterAll">Все</button>
+        <button class="filter-btn" data-genre="action" type="button" data-i18n="filterAction">Боевик</button>
+        <button class="filter-btn" data-genre="comedy" type="button" data-i18n="filterComedy">Комедия</button>
+        <button class="filter-btn" data-genre="drama" type="button" data-i18n="filterDrama">Драма</button>
+        <button class="filter-btn" data-genre="horror" type="button" data-i18n="filterHorror">Ужасы</button>
+        <button class="filter-btn" data-genre="romance" type="button" data-i18n="filterRomance">Романтика</button>
+        <button class="filter-btn" data-genre="sci-fi" type="button" data-i18n="filterSciFi">Фантастика</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="library-grid" id="library-grid"></div>
+
+  <footer class="footer">
+    <p>© 2026 <span>FILMKHONA</span> — Premium Cinema Experience</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    window.addEventListener('scroll', function() {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+</body>
+</html>
