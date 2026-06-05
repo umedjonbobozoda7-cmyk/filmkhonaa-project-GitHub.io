@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация — FILMKHONA</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    .auth-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: var(--shadow);
+    }
+
+    .auth-card h1 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      color: var(--red);
+    }
+
+    .auth-card p {
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      font-size: 0.9rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 0.95rem;
+      font-family: var(--font);
+      transition: border-color var(--transition);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--red);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .form-group input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font);
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: var(--red-hover);
+      transform: scale(1.01);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .alert {
+      padding: 0.85rem;
+      border-radius: var(--radius);
+      margin-bottom: 1.25rem;
+      font-size: 0.9rem;
+      display: none;
+      animation: slide-down 0.3s ease;
+    }
+
+    .alert.show {
+      display: block;
+    }
+
+    .alert-error {
+      background: rgba(229, 9, 20, 0.15);
+      border: 1px solid rgba(229, 9, 20, 0.3);
+      color: #ff6b6b;
+    }
+
+    .alert-success {
+      background: rgba(76, 175, 80, 0.15);
+      border: 1px solid rgba(76, 175, 80, 0.3);
+      color: #66bb6a;
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .auth-footer p {
+      margin: 0;
+      font-size: 0.85rem;
+    }
+
+    .auth-footer a {
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition);
+    }
+
+    .auth-footer a:hover {
+      color: var(--red-hover);
+    }
+
+    @keyframes slide-down {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .auth-card {
+        padding: 1.75rem;
+      }
+
+      .auth-card h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body data-page="signup">
+  <div id="loader">
+    <div class="loader-logo">FILMKHONA</div>
+    <div class="loader-bar"></div>
+    <p class="loader-text">Загрузка FILMKHONA...</p>
+  </div>
+
+  <div class="bg-gradient-3d" aria-hidden="true"></div>
+  <div class="glow-orb glow-orb-1" aria-hidden="true"></div>
+  <div class="glow-orb glow-orb-2" aria-hidden="true"></div>
+  <div class="glow-orb glow-orb-3" aria-hidden="true"></div>
+
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="logo">FILMKHONA</a>
+  </header>
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <h1>Регистрация</h1>
+      <p>Создайте аккаунт для просмотра фильмов</p>
+
+      <div id="alert" class="alert"></div>
+
+      <form id="signupForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="example@mail.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Пароль</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Минимум 6 символов"
+            required
+            autocomplete="new-password"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Подтвердите пароль</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Повторите пароль"
+            required
+            autocomplete="new-password"
+          />
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          Создать аккаунт
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        <p>
+          Уже есть аккаунт?
+          <a href="login.html">Войти</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import {
+      registerUser,
+      validatePassword,
+      isValidEmail
+    } from './firebaseAuth.js';
+
+    const form = document.getElementById('signupForm');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    const submitBtn = document.getElementById('submitBtn');
+    const alertDiv = document.getElementById('alert');
+
+    function showAlert(message, type = 'error') {
+      alertDiv.textContent = message;
+      alertDiv.className = `alert show alert-${type}`;
+      alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function hideAlert() {
+      alertDiv.classList.remove('show');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideAlert();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      const confirmPassword = confirmPasswordInput.value;
+
+      // Validate email
+      if (!isValidEmail(email)) {
+        showAlert('Пожалуйста, введите корректный email', 'error');
+        return;
+      }
+
+      // Validate password
+      const passwordValidation = validatePassword(password);
+      if (!passwordValidation.isValid) {
+        showAlert(passwordValidation.message, 'error');
+        return;
+      }
+
+      // Check passwords match
+      if (password !== confirmPassword) {
+        showAlert('Пароли не совпадают', 'error');
+        return;
+      }
+
+      // Disable submit button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Регистрация...';
+
+      // Register user
+      const result = await registerUser(email, password);
+
+      if (result.success) {
+        showAlert(result.message, 'success');
+        form.reset();
+
+        // Redirect to login after 2 seconds
+        setTimeout(() => {
+          window.location.href = 'login.html?registered=true';
+        }, 2000);
+      } else {
+        showAlert(result.error, 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Создать аккаунт';
+      }
+    });
+
+    // Hide loader
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      setTimeout(() => {
+        loader.classList.add('hidden');
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
